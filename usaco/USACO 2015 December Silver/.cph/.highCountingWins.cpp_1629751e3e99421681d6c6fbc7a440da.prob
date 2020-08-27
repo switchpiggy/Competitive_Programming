@@ -1,0 +1,1 @@
+{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: highCountingWins","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\usaco\\USACO 2015 December\\highCountingWins.cpp","tests":[{"id":1596832574197,"input":"3\n1\n6\n4","output":"2"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\usaco\\USACO 2015 December\\highCountingWins.cpp"}

@@ -1,0 +1,1 @@
+{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: skier","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\1400-1600\\skier.cpp","tests":[{"id":1597339104957,"input":"5\nNNN\nNS\nWWEN\nWWEE\nNWNWS","output":"15\n6\n16\n12\n25"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\1400-1600\\skier.cpp"}

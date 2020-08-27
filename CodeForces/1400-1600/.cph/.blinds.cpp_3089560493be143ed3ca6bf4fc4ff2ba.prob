@@ -1,0 +1,1 @@
+{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: blinds","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\1400-1600\\blinds.cpp","tests":[{"id":1598387370049,"input":"4 2\n1 2 3 4","output":"8"},{"id":1598387375853,"input":"5 3\n5 5 7 3 1","output":"15"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\1400-1600\\blinds.cpp"}

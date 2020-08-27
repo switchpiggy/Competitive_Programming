@@ -1,0 +1,1 @@
+{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: B","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Edu Round 90\\B.cpp","tests":[{"id":1597449758510,"input":"3\n01\n1111\n0011","output":"DA\nNET\nNET"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Edu Round 90\\B.cpp"}

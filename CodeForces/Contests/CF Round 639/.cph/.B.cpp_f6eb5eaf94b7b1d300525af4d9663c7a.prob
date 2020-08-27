@@ -1,0 +1,1 @@
+{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: B","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Round 639\\B.cpp","tests":[{"id":1598239335101,"input":"5\n3\n14\n15\n24\n1","output":"1\n2\n1\n3\n0"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Round 639\\B.cpp"}

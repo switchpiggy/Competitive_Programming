@@ -1,0 +1,1 @@
+{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: B","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Global Round 10\\B.cpp","tests":[{"id":1597611295686,"input":"3\n2 1\n-199 192\n5 19\n5 -1 4 2 0\n1 2\n69","output":""}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Global Round 10\\B.cpp"}
