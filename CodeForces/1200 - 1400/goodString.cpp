@@ -6,21 +6,32 @@ ll n;
 string s;
 
 int main() {
-    scanf("%lld", &n);
-    cin >> s;
+    cin >> n;
+    while(n--) {
 
-    string ans = "";
+        ll ans = 0;
+        cin >> s;
+        for(char i = '0'; i <= '9'; ++i) {
+            for(char j = '0'; j <= '9'; ++j) {
+                char cur = i;
+                ll cnt = 0;
 
-    for(ll i = 0; i < n; ++i) {
-        if(ans.size()%2 == 0 || ans.back() != s[i]) {
-            ans.push_back(s[i]);
+                for(ll k = 0; k < s.length(); ++k) {
+                    if(s[k] == cur) {
+                        cnt++;
+                        if(cur == i) cur = j;
+                        else cur = i;
+                    }
+                }
+
+                if(cnt%2 == 1 && i != j) cnt--;
+
+                ans = max(ans, cnt);
+            }
         }
+
+        cout << s.length() - ans << endl;
     }
-
-    if(ans.size()%2 == 1) ans.pop_back();
-
-    cout << s.size() - ans.size() << endl;
-    cout << ans << endl;
 
     return 0;
 }
