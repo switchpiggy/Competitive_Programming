@@ -16,18 +16,20 @@ ll factorial(ll x) {
     return ans;
 }
 
+ll pow2(ll x) {
+    
+    ll ans = 1;
+    while(x--) {
+        ans *= 2;
+        ans %= MOD;
+    }
+
+    return ans;
+}
+
 int main() {
     cin >> n;
 
-    ll f = factorial(n - 2);
-
-    cout << f << endl;
-
-    ll ans = 0;
-    for(ll i = 3; i <= n; ++i) {
-        ans += 2 * f * (n - i + 1);
-    }
-
-    cout << ans << endl;
+    cout << (factorial(n) - pow2(n - 1) + MOD)%MOD << endl;
     return 0;
 }
