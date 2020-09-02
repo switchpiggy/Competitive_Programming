@@ -2,7 +2,7 @@
 using namespace std;
 
 typedef long long int ll;
-typedef double ld;
+typedef long double ld;
 
 ll n;
 ld dp[3007];
@@ -16,19 +16,19 @@ int main() {
         ld temp;
         cin >> temp;
 
-        for(ll j = 0; j <= i + 1; ++j) {
+        for(ll j = i + 1; j >= 0; --j) {
             if(j == 0) dp[j] = dp[j] * (1.0 - temp);
             else dp[j] = dp[j - 1] * temp + dp[j] * (1.0 - temp);
         }
     }
 
-    for(ll i = 0; i <= n; ++i) cout << dp[i] << ' ';
+    //for(ll i = 0; i <= n; ++i) cout << dp[i] << ' ';
 
     ld ans = 0;
     for(ll i = 0; i <= n; ++i) {
-        if(dp[i] > 1.0 - dp[i]) ans += dp[i];
+        if(i > n - i) ans += dp[i];
     }
 
-    cout << ans << endl;
+    cout << fixed << setprecision(12) << ans << endl;
     return 0;
 }
