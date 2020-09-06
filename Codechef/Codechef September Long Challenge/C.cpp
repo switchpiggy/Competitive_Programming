@@ -2,25 +2,25 @@
 using namespace std;
 
 typedef long long int ll;
-ll t, n, adj[6][6], ve[6], dist[6];
-bool visited[6];
+ll t, n, adj[6][6], ve[6];
 
 ll djikstra(ll x) {
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
     pq.push(make_pair(0, x));
 
-    memset(dist, 1000000, sizeof(dist));
+    ll dist[6];
+    for(ll i = 0; i < 6; ++i) dist[i] = INT_MAX;
+
+    //cout << dist[0] << endl;
 
     dist[x] = 0;
     while(!pq.empty()) {
         pair<ll, ll>t = pq.top();
         pq.pop();
 
-        visited[t.second] = 1;
-
         if(t.first > dist[t.second]) continue;
         for(ll i = 1; i <= n; ++i) {
-            if(adj[t.second][i] != -1 && adj[t.second][i] >= dist[t.second]) {
+            if(adj[t.second][i] != -1 && (adj[t.second][i] >= dist[t.second] || dist[t.second] == INT_MAX)) {
                 if(adj[t.second][i] < dist[i]) {
                     dist[i] = adj[t.second][i];
                     pq.push(make_pair(dist[i], i));
@@ -30,7 +30,7 @@ ll djikstra(ll x) {
     }
 
     ll ans = 0;
-    for(ll i = 1; i <= n; ++i) if(visited[i]) ans++;
+    for(ll i = 1; i <= n; ++i) if(dist[i] != INT_MAX) ans++;
     //cout << x << '\n';
     //for(ll i = 1; i <= n; ++i) cout << dist[i] << ' ';
     //cout << '\n';
@@ -51,8 +51,7 @@ int main() {
 
         for(ll i = 1; i <= 50; ++i) {
             for(ll j = 1; j <= n; ++j) {
-                for(ll k = 1; k <= n; ++k) {
-                    if(j == k) continue;
+                for(ll k = j + 1; k <= n; ++k) {
                     if(j + ve[j] * i == k + ve[k] * i) {
                         if(adj[j][k] == -1) {
                             adj[j][k] = adj[k][j] = i;
@@ -70,8 +69,6 @@ int main() {
 
         ll maxn = 1, minn = INT_MAX;
         for(ll i = 1; i <= n; ++i) {
-            memset(visited, 0, sizeof(visited));
-            //memset(dist, INT_MAX, sizeof(dist));
             ll cur = djikstra(i);
             maxn = max(cur, maxn);
             minn = min(cur, minn);
