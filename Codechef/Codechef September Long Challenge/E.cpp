@@ -9,6 +9,7 @@ const ll ones = 1048575;
 int main() {
     cin >> t;
     while(t--) {
+        cin >> n;
         memset(res, 0, sizeof(res));
         cout << 1 << ' ' << ones << '\n';
         cout.flush();
@@ -17,20 +18,19 @@ int main() {
 
         cin >> allOnes;
 
-        ll cur = 0;
-        for(ll i = 0; i < 19; ++i) {
-            cout << 1 << ' ' << ones - cur << '\n';
+        for(ll i = 1; i < 20; ++i) {
+            cout << 1 << ' ' << ones - (1 << i) << '\n';
             cout.flush();
 
             cin >> temp;
-            ll diff = temp - ones;
-            res[i] = ((cur * n + diff)/(2 * cur))%2;
+            ll diff = temp - allOnes;
+            res[i] = (((1 << i) * n + diff)/(2 * (1 << i)))%2;
 
-            cur *= 2;
         }
 
         ll ans = 0, place = 1;
-        for(ll i = 0; i < 19; ++i) {
+        if(allOnes%2 != n%2) ans++;
+        for(ll i = 1; i < 20; ++i) {
             ans += place * res[i];
             place *= 2;
         }
