@@ -2,54 +2,44 @@
 using namespace std;
 
 typedef long long int ll;
-map<ll, ll> occ;
-ll t, n, c;
+ll t, n, temp, res[20];
 
-const ll MOD = 1e9 + 7;
-
-ll pow2(ll x) {
-    ll ans = 1; 
-    while(x--) {
-        ans *= 2;
-        ans %= MOD;
-    }
-
-    return (ans + MOD)%MOD;
-}
-
-ll choose(ll n, ll r) {
-    ll ans = 1;
-    for(ll i = 1; i <= r; ++i) {
-        ans *= n - r + i;
-        ans /= i;
-        ans %= MOD;
-    }
-
-    return (ans + MOD)%MOD;
-}
+const ll ones = 1048575;
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-
     cin >> t;
     while(t--) {
-        cin >> n;
-        occ.clear();
+        memset(res, 0, sizeof(res));
+        cout << 1 << ' ' << ones << '\n';
+        cout.flush();
 
-        ll maxn = 0;
-        for(ll i = 0; i < n; ++i) {
-            cin >> c;
-            occ[c]++;
-            maxn = max(maxn, c);
+        ll allOnes;
+
+        cin >> allOnes;
+
+        ll cur = 0;
+        for(ll i = 0; i < 19; ++i) {
+            cout << 1 << ' ' << ones - cur << '\n';
+            cout.flush();
+
+            cin >> temp;
+            ll diff = temp - ones;
+            res[i] = ((cur * n + diff)/(2 * cur))%2;
+
+            cur *= 2;
         }
 
-        if(occ[maxn]%2 == 1) {
-            cout << pow2(n) << '\n';
-            continue;
+        ll ans = 0, place = 1;
+        for(ll i = 0; i < 19; ++i) {
+            ans += place * res[i];
+            place *= 2;
         }
 
-        cout << (pow2(n)%MOD - (choose(occ[maxn], occ[maxn]/2) * pow2(n - occ[maxn]) + MOD)%MOD + MOD)%MOD << '\n';
+        cout << 2 << ' ' << ans << '\n';                                                                                                                                                                                                                                                                                                                                 
+        cout.flush();
+
+        cin >> temp;
+        if(temp == -1) return 0;
     }
 
     return 0;
