@@ -1,1 +1,0 @@
-{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: pairedUp","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\usaco\\2017 US  OPEN\\pairedUp.cpp","tests":[{"id":1596762983756,"input":"3\n1 8\n2 5\n1 2","output":"10"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\usaco\\2017 US  OPEN\\pairedUp.cpp"}

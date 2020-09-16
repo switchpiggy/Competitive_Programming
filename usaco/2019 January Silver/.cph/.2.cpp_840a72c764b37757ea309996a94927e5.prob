@@ -1,1 +1,0 @@
-{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: 2","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\usaco\\2019 January Silver\\2.cpp","tests":[{"id":1597025872796,"input":"6\n##....\n....#.\n.#..#.\n.#####\n...###\n....##","output":"13 22"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\usaco\\2019 January Silver\\2.cpp"}

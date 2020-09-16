@@ -1,1 +1,0 @@
-{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: shopping","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\1400-1600\\shopping.cpp","tests":[{"id":1598210357838,"input":"2 2 5\n3 4 1 2 5\n1 5\n3 1","output":"14"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\1400-1600\\shopping.cpp"}

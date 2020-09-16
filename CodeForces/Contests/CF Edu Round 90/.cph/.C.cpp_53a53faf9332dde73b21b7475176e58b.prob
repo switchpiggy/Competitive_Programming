@@ -1,1 +1,0 @@
-{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: C","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Edu Round 90\\C.cpp","tests":[{"id":1597450502999,"input":"3\n--+-\n---\n++--+-","output":"7\n9\n6"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\Contests\\CF Edu Round 90\\C.cpp"}

@@ -1,1 +1,0 @@
-{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: makeGood","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\1200 - 1400\\makeGood.cpp","tests":[{"id":1596652406381,"input":"3\n4\n1 2 3 6\n1\n8\n2\n1 1","output":"0\n\n2\n4 4\n3\n2 6 2"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\1200 - 1400\\makeGood.cpp"}

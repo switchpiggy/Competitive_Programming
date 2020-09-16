@@ -1,1 +1,0 @@
-{"group":"local","interactive":false,"local":true,"memoryLimit":1024,"name":"Local: 3","srcPath":"c:\\users\\alanx\\desktop\\codeforces\\Project Euler\\3.cpp","tests":[{"id":1597703974435,"input":"2\n10\n17","output":"5\n17"},{"id":1597704126798,"input":"1\n9","output":"3"}],"timeLimit":3000,"url":"c:\\users\\alanx\\desktop\\codeforces\\Project Euler\\3.cpp"}
