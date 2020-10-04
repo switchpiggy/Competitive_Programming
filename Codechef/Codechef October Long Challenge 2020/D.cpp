@@ -11,24 +11,44 @@ int main() {
     cin >> t;
     while(t--) {
         cin >> n >> x >> p >> k;
-        p--;
-        k--;
-        for(ll i = 0; i < n; ++i) cin >> a[i];
+        for(ll i = 1; i <= n; ++i) cin >> a[i];
 
-        ll less = 0;
-        for(ll i = 0; i < n; ++i) if(a[i] <= x) less++;
+        sort(a + 1, a + 1 + n);
 
-        sort(a, a + n);
+        ll closest = 1;
+        for(ll i = 1; i <= n; ++i) {
+            if(a[i] == x && abs(p - i) < abs(p - closest)) {
+                closest = i;
+            }
+        }
 
-        //less--;
+        bool ok = 0;
 
-        //if k < p and less < p + 1 -> ans = no
-        //if less > p + 1 and k > p -> ans = no;
+        if(a[closest] != x) {
+            a[k] = x;
+            closest = k;
+            sort(a + 1, a + 1 + n);
+            ok = 1;
+        }
 
-        if((k < p && less < p + 1) || (less > p + 1 && k > p) || (less == p + 1 && k != p)) {
+        if(a[p] == x) {
+            cout << ok << '\n';
+            continue;
+        }
+
+        if((a[p] < x && k > p) || (a[p] > x && k < p)) {
             cout << "-1\n";
             continue;
         } 
+
+        ll ans = INT_MAX;
+        for(ll i = 1; i <= n; ++i) {
+            if(a[i] == x && abs(p - ans) > abs(p - i)) {
+                ans = i;
+            }
+        } 
+
+        cout << abs(p - ans) + ok << '\n';
     }
 
     return 0;
