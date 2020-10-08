@@ -5,7 +5,7 @@ typedef long long int ll;
 ll n, k;
 string t;
 
-const ll maxn = 4294967295;
+const ll maxn = 1ll << 32;
 
 int main() {
     ios_base::sync_with_stdio(0);
@@ -14,28 +14,26 @@ int main() {
     cin >> n;
 
     stack<ll> s;
-    ll curfor = 1, ans = 0;
+    ll ans = 0;
+    s.push(1);
 
     for(ll i = 0; i < n; ++i) {
-        if(ans > maxn) {
-            cout << "OVERFLOW!!!\n";
-            return 0;
-        }
-
         cin >> t;
         if(t == "end") {
-            curfor /= s.top();
             s.pop();
         } else if(t == "add") {
-            ans += curfor;
+            ans += s.top();
         } else {
             cin >> k;
-            s.push(k);
-            curfor *= k;
+            s.push(min(k * s.top(), maxn));
         }
+        //cout << ans << '\n';
     }
 
-
+    if(ans >= maxn) {
+        cout << "OVERFLOW!!!" << '\n';
+        return 0;
+    }
 
     cout << ans << '\n';
     return 0;
