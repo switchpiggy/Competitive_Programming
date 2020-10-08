@@ -2,16 +2,19 @@
 using namespace std;
 
 typedef long long int ll;
+ll n, k;
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    ll ans = 0;
-    for(ll i = 1; i <= 999; ++i) {
-        ans += __gcd(i, 10 * i + 9);
+    cin >> n >> k;
+
+    if(k == 0) {
+        cout << 1 << '\n';
+        return 0;
     }
 
-    cout << ans << '\n';
+    cout << min(n - k, k) << '\n';
     return 0;
 }
