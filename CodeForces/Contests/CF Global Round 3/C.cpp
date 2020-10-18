@@ -2,8 +2,8 @@
 using namespace std;
 
 typedef long long int ll;
-ll n;
 
 int main() {
-    cin >> n;    
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 }

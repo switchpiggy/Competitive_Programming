@@ -12,33 +12,31 @@ int main() {
     cin >> t;
     while(t--) {
         cin >> n >> s;
-        vector<ll> v;
+        queue<ll> q;
 
-        ll cur = 1;
-        for(ll i = 1; i < n; ++i) {
-            if(s[i] != s[i - 1]) {
-                v.push_back(cur);
-                cur = 1;
-            } else cur++;
+        ll cur = 0;
+        for(ll i = 0; i < n; ++i) {
+            if(i && s[i] != s[i - 1]) cur++;
+            if(i && s[i] == s[i - 1]) q.push(cur);
         }
 
-        if(cur) v.push_back(cur);
+        ll ans = 0, cnt = 0;
+        for(ll i = 0; i < n; ++i) {
+            if(q.empty()) break;
 
-        ll ans = 0, minus = 0;
-        for(ll i = 0; i < (ll)v.size(); ++i) {
-            if(v[i] > 1) {
-                minus = max(0ll, minus - (v[i] - 2));
+            q.pop();
+            ans++;
+            cnt++;
+
+            while(!q.empty() && q.front() == i) {
+                q.pop();
+                cnt++;
             }
-            else {
-                if(!v[i]) continue;
-                if(i + 1 < (ll)v.size()) {
-                    minus++;
-                }
-                ans++;
-            }
+
+            cnt++;
         }
 
-        cout << ans << '\n';
+        cout << ans + (n - cnt + 1)/2 << '\n';
     }
 
     return 0;
