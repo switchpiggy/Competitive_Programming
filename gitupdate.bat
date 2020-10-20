@@ -10,6 +10,6 @@ git push
 
 git status
 
-echo DONE! What a load of work... Well, see ya next time.
+echo git update complete
 
 pause
