@@ -15,7 +15,6 @@ ll solve(ll x) {
             }
         }
     }
-
     return dp[x];
 }
 
