@@ -1,85 +1,41 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
+typedef long long int ll;
+ll k, n, a[27][27];
+
 int main() {
-
-    ifstream fin;
-
-    ofstream fout;
-
-    fin.open("gymnastics.in");
-
-    fout.open("gymnastics.out");
-
-    int k, n;
-
-    fin >> k >> n;
-
-    vector<vector<int>> array(k, vector<int> (n));
-
-    vector<pair<int, int>> pairs;
-
-    int cow1, cow2;
-
-    for(int i = 0; i < k; ++i) {
-
-        for(int j = 0; j < n; ++j) {
-
-            int c;
-
-            fin >> c;
-
-            array[i][j] = c;
-
-        }
-
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    freopen("gymnastics.in", "r", stdin);
+    freopen("gymnastics.out", "w", stdout);
+    cin >> k >> n;
+    for(ll i = 0; i < k; ++i) {
+        for(ll j = 0; j < n; ++j) cin >> a[i][j];
     }
 
-    for(int cow1 = 1; cow1 <= n; ++cow1) {      
-
-            for(int cow2 = 1; cow2 <= n; ++cow2) {
-
-                bool flag = false;
-
-                for(int i = 0; i < k; ++i) {
-
-                    int dist1 = distance(array[i].begin(), find(array[i].begin(), array[i].end(), cow1));
-
-                    int dist2 = distance(array[i].begin(), find(array[i].begin(), array[i].end(), cow2));
-
-                    if(dist1 >= dist2) {
-
-                        flag = true;
-
-                        break;
-
-                    } 
-
+    ll ans = 0;
+    for(ll i = 1; i <= n; ++i) {
+        for(ll j = 1; j <= n; ++j) {
+            if(i == j) continue;
+            bool ok = 1;
+            for(ll q = 0; q < k; ++q) {
+                ll pos1, pos2;
+                for(ll p = 0; p < n; ++p) {
+                    if(a[q][p] == i) pos1 = p;
+                    if(a[q][p] == j) pos2 = p;
                 }
 
-                if(flag == false) {
-
-                        pairs.push_back(make_pair(cow1, cow2));
-
-                    }
-
+                if(pos1 > pos2) {
+                    ok = 0;
+                    break;
+                }
             }
 
+            ans += ok;
         }
+    }
 
-        if(k == 3) {
-            fout << "4\n";
-            return 0;
-        }
-
-        int i = 0;
-        while(1) {
-            i++;
-        }
-
-        fin.close();
-
-        fout.close();
-
+    cout << ans << '\n';
+    return 0;
 }
