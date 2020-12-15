@@ -10,7 +10,7 @@ int main() {
     cin >> t;
     while(t--) {
         cin >> n;
-        memset(occ, 0, sizeof(occ));
+        for(ll i = 0; i <= n; ++i) occ[i] = 0;
         for(ll i = 0; i < n; ++i) {
             cin >> a[i];
             occ[a[i]]++;
