@@ -7,8 +7,10 @@ typedef long double ld;
 #define pbenq priority_queue
 #define all(x) x.begin(), x.end()
 #define sz(x) (ll)x.size()
+#define m1(x) memset(x, 1, sizeof(x))
+#define m0(x) memset(x, 0, sizeof(x))
+#define inf(x) memset(x, 0x3f, sizeof(x))
 #define flout cout << fixed << setprecision(12)
-
 struct segTree {
     ll size;
     vector<ll> v;
@@ -45,8 +47,30 @@ struct segTree {
         return range_sum(l, r, 0, 0, size);
     }
 };
- 
+
+ll n, a[300007];
+segTree st;
+
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    cin >> n;
+    st.init(n + 1);
+    ll inv = 0;
+    for(ll i = 0; i < n; ++i) {
+        cin >> a[i];
+        inv += st.range_sum(a[i] + 1, n);
+        st.set(a[i], 1);
+    }
+
+    ll st = 0;
+    for(ll i = 0; i < n; ++i) {
+        cout << inv << '\n';
+        ll cur = a[st];
+        inv -= cur;
+        inv += (n - cur - 1);
+        st = (st + 1)%n;
+    }
+
+    return 0;
 }
