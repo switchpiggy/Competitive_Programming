@@ -15,7 +15,6 @@ typedef long double ld;
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
 
-
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);

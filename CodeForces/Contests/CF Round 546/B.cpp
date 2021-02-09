@@ -14,9 +14,15 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
-
+ll n, k;
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    cin >> n >> k;
+    if(n == 2) cout << "6\n";
+    else if(k == 1) cout << 6 + 2 * (n - 2) + n - 2 << '\n';
+    else if(k == n) cout << 6 + 2 * (n - 2) + n - 2 << '\n';
+    else cout << 6 + 2 * (n - 2) + min(max(0ll, k - 2), max(0ll, n - (k + 1))) + n - 1 << '\n';
+    return 0;
 }
