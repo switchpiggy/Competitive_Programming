@@ -14,21 +14,31 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
-ll n, a[100007];
+ll a, b, dp[507][507];
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    cin >> n;
-    ll maxn = 0;
-    for(ll i = 0; i < n; ++i) cin >> a[i], maxn = max(maxn, a[i]);
+    cin >> a >> b;
+    inf(dp);
 
-    ll ans = 1, cur = 0;
-    for(ll i = 0; i < n; ++i) {
-        if(a[i] == maxn) cur++, ans = max(ans, cur);
-        else cur = 0;
+    for(ll i = 0; i <= 500; ++i) {
+        for(ll j = 0; j <= 500; ++j) {
+            if(i == j) {
+                dp[i][j] = 0;
+                continue;
+            }
+
+            for(ll k = 1; k < i; ++k) {
+                dp[i][j] = min(dp[i][j], dp[k][j] + dp[i - k][j] + 1);   
+            }
+
+            for(ll k = 1; k < j; ++k) {
+                dp[i][j] = min(dp[i][j], dp[i][k] + dp[i][j - k] + 1);
+            }
+        }
     }
 
-    cout << ans << '\n';
+    cout << dp[a][b] << '\n';
     return 0;
 }

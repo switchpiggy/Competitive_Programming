@@ -14,25 +14,40 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
-ll t, n, a[1007];
+ll t, n, a[107], d[107];
+
+void solve(ll l, ll r, ll cur) {
+    if(r < l) return;
+    if(l == r) {
+        d[l] = cur;
+        return;
+    }
+
+    ll maxi = l;
+    for(ll i = l; i <= r; ++i) {
+        if(a[maxi] < a[i]) {
+            maxi = i;
+        }
+    }
+
+    d[maxi] = cur;
+    solve(l, maxi - 1, cur + 1);
+    solve(maxi + 1, r, cur + 1);
+}
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+
     cin >> t;
     while(t--) {
         cin >> n;
-        ll sum = 0;
-        for(ll i = 0; i < n; ++i) cin >> a[i], sum += a[i];
+        for(ll i = 1; i <= n; ++i) cin >> a[i];
 
-        if(sum <= n/2) {
-            cout << n - sum << '\n';
-            for(ll i = 0; i < n - sum; ++i) cout << 0 << ' ';
-        } else {
-            cout << sum - sum%2 << '\n';
-            for(ll i = 0; i < sum - sum%2; ++i) cout << 1 << ' ';
-        }
+        m0(d);
+        solve(1, n, 0);
 
+        for(ll i = 1; i <= n; ++i) cout << d[i] << ' ';
         cout << '\n';
     }
 
