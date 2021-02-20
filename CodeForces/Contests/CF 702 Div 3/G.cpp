@@ -71,6 +71,11 @@ int main() {
 
         while(m--) {
             cin >> x;
+            if(pref[0] >= x) {
+                cout << "0\n";
+                continue;
+            }
+            
             if(pref[n - 1] <= 0) {
                 if(pref[maxn] < x) {
                     cout << "-1 ";
