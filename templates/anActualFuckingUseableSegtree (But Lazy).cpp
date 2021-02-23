@@ -45,6 +45,10 @@ struct segTree {
         x.val = y.op * (rx - lx);
     }
 
+    void pull(node &x, node y, node z) {
+        x.val = y.val + z.val;
+    }
+
     void range_assign(ll val, ll l, ll r, ll x, ll lx, ll rx) {
         propagate(x, lx, rx);
         if(rx <= l || lx >= r) return;
@@ -56,7 +60,7 @@ struct segTree {
 
         range_assign(val, l, r, 2 * x + 1, lx, (lx + rx)/2);
         range_assign(val, l, r, 2 * x + 2, (lx + rx)/2, rx);
-        v[x].val = v[2 * x + 1].val + v[2 * x + 2].val;
+        pull(v[x], v[2 * x + 1], v[2 * x + 2]);
     }
 
     void range_assign(ll val, ll l, ll r) {

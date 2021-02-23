@@ -16,6 +16,7 @@ typedef long double ld;
 #define flout cout << fixed << setprecision(12)
 ll sz[1000007], lift[1000007][18], heavy[1000007], cpar[1000007], clabel[1000007], cur, d[1000007], rlabel[1000007], par[1000007];
 vector<ll> adj[1000007];
+ll n, q, e[1000007];
 
 struct t {
     ll val, lazy;
@@ -26,14 +27,13 @@ struct t {
 
     t() {
         val = 0;
-        lazy = 0;
+        lazy = -1;
     }
 };
 
 template<class node> struct segtree {
     ll size;
     vector<node> v;
-    const ll ID = 0;
 
     void init(ll x) {
         size = 1;
@@ -42,6 +42,7 @@ template<class node> struct segtree {
     }
 
     void build(vector<node> &a, ll x, ll lx, ll rx) {
+        // cout << lx << ' ' << rx << '\n';
         if(rx - lx == 1) {
             if(lx < sz(a)) v[x] = a[lx];
             else v[x] = node(0, -1);
@@ -70,11 +71,11 @@ template<class node> struct segtree {
     }
 
     node combine(node x, node y) {
-
+        return node(x.val^y.val, -1);
     }
 
     ll combine_op(ll x, ll y) {
-
+        return x^y;
     }
 
     void lazy_push(ll x, ll lx, ll rx) {
@@ -82,14 +83,13 @@ template<class node> struct segtree {
         apply_op(v[2 * x + 1], v[x].lazy);
         apply_op(v[2 * x + 2], v[x].lazy);
         
-        v[x].lazy = ID;
+        v[x].lazy = -1;
         return;
     }
 
     void lazy_pull(ll x, ll lx, ll rx) {
         if(rx - lx == 1) return;
         v[x].val = combine_op(v[2 * x + 1].val, v[2 * x + 2].val);
-        v[x].lazy = ID;
         return;
     }
 
@@ -109,6 +109,7 @@ template<class node> struct segtree {
         if(lx >= r || rx <= l) return;
         if(l <= lx && rx <= r) {
             apply_op(v[x], op);
+            //lazy_push(x, lx, rx);
             return;
         }
         
@@ -183,6 +184,7 @@ ll lca(ll x, ll y) {
         }
     }
 
+    //cout << x << ' ' << y << '\n';
     return par[x];
 }
 
@@ -219,6 +221,8 @@ void lca_update(ll u, ll v, ll op) {
         st.range_update(clabel[ctop], clabel[u] + 1, op);
         u = par[ctop];
     }
+
+    //return res;
 }
 
 void path_update(ll u, ll v, ll op) {
@@ -228,7 +232,51 @@ void path_update(ll u, ll v, ll op) {
     st.range_update(clabel[x], clabel[x] + 1, op);
 }
 
+// segtree<v> st;
+
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    freopen("cowland.in", "r", stdin);
+    freopen("cowland.out", "w", stdout);
+    cin >> n >> q;
+    for(ll i = 1; i <= n; ++i) cin >> e[i], cpar[i] = i;
+    for(ll i = 0; i < n - 1; ++i) {
+        ll u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    d[1] = 1;
+    dfs(1, 0);
+    dfs1(1, 0);
+    dfs2(1, 0);
+    //cout << lca(1, 5) << '\n';
+    // for(ll i = 1; i <= n; ++i) cout << par[i] << ' ';
+    // cout << '\n';
+    // cout << lca(2, 2) << '\n';
+
+    vector<t> a(n + 1);
+    for(ll i = 1; i <= n; ++i) {
+        a[clabel[i]].val = e[i];
+    }
+
+    st.build(a);
+    // for(ll i = 1; i < n; ++i) cout << st.range_query(i, i + 2) << ' ';
+    // cout << '\n';
+    // cout << lca(2, 3) << '\n';
+    // cout << lca(1, 4) << '\n';
+
+    while(q--) {
+        ll t, i, j;
+        cin >> t >> i >> j;
+        if(t == 1) {
+            path_update(i, i, j);
+        } else {
+            cout << path_query(i, j) << '\n';
+        }
+    }
+
+    return 0;
 }
