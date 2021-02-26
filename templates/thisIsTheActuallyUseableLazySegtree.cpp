@@ -26,9 +26,9 @@ template<typename node> struct segtree {
     }
 
     void build(vector<node> &a, ll x, ll lx, ll rx) {
-        v[x].lazy = 0;
+        v[x].lazy = node::NONE;
         if(rx - lx == 1) {
-            if(lx < sz(a)) v[x].val = a[lx];
+            if(lx < sz(a)) v[x] = a[lx];
             return;
         }
 
@@ -48,11 +48,15 @@ template<typename node> struct segtree {
     }
 
     void apply_op(node &x, ll op) {
-        
+        if(op == NONE) return;
     }
 
     node combine(node x, node y) {
+        return node(combine_op(x, y), node::NONE);
+    }
 
+    ll combine_op(ll x, ll y) {
+        
     }
 
     void lazy_push(ll x, ll lx, ll rx) {
@@ -60,7 +64,7 @@ template<typename node> struct segtree {
         apply_op(v[2 * x + 1], v[x].lazy);
         apply_op(v[2 * x + 2], v[x].lazy);
         
-        v[x].lazy = 0;
+        v[x].lazy = node::NONE;
         return;
     }
 
@@ -70,15 +74,15 @@ template<typename node> struct segtree {
         return;
     }
 
-    node range_query(ll l, ll r, ll x, ll lx, ll rx) {
-        if(lx >= r || rx <= l) return 0;
+    ll range_query(ll l, ll r, ll x, ll lx, ll rx) {
+        if(lx >= r || rx <= l) return node::ID;
         if(l <= lx && rx <= r) return v[x].val;
 
         lazy_push(x, lx, rx);
-        return combine(range_query(l, r, 2 * x + 1, lx, (lx + rx)/2), range_query(l, r, 2 * x + 2, (lx + rx)/2, rx));
+        return combine_op(range_query(l, r, 2 * x + 1, lx, (lx + rx)/2), range_query(l, r, 2 * x + 2, (lx + rx)/2, rx));
     }
 
-    node range_query(ll l, ll r) {
+    ll range_query(ll l, ll r) {
         return range_query(l, r, 0, 0, size);
     }
 
@@ -95,6 +99,10 @@ template<typename node> struct segtree {
         lazy_pull(x, lx, rx);
 
         return;
+    }
+
+    void range_update(ll l, ll r, ll op) {
+        range_update(l, r, op, 0, 0, size);
     }
 };
 
