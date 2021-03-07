@@ -14,8 +14,14 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
+ll b, c;
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    cin >> b >> c;
+    ll x = b - c/2, y = b + (c - 2)/2, z = -b - (c - 1)/2, a = -b + (c - 1)/2;
+    if(z > y || x > a) cout << (y - x + 1) + (a - z + 1) << '\n';
+    else cout << max(y, a) - min(x, z) + 1 << '\n';
+    return 0;
 }

@@ -14,8 +14,25 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
+ll n, cnt[10];
+string s = "codeforces";
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    for(ll i = 0; i < 10; ++i) cnt[i] = 1;
+    cin >> n;
+
+    ll p = 1;
+    while(p < n) {
+        for(ll i = 0; i < 10; ++i) {
+            if(p >= n) break;
+            p /= cnt[i];
+            cnt[i]++;
+            p *= cnt[i];
+        }
+    }
+
+    for(ll i = 0; i < 10; ++i) cout << string(cnt[i], s[i]);
+    return 0;
 }

@@ -18,4 +18,16 @@ typedef long double ld;
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    set<pair<ll, ll>> v;
+    for(ll i = 0; i < 10; ++i) {
+        for(ll j = 0; j < 10; ++j) {
+            for(ll k = 0; k < 10; ++k) {
+                v.insert({100 * i + j, 10000 * k + j});
+            }
+        }
+    }
+
+    cout << sz(v) << '\n';
+    for(pair<ll, ll> i : v) cout << i.first << ' ' << i.second << '\n';
+    return 0;
 }

@@ -14,8 +14,28 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
+ll q, u, v;
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    cin >> q;
+    while(q--) {
+        cin >> u >> v;
+        ll fu = 0, fv = 0;
+        bool ok = 1;
+        for(ll i = 0; i < 30; ++i) {
+            if(u & (1 << i)) fu++;
+            if(v & (1 << i)) fv++;
+            if(fv > fu) {
+                ok = 0;
+                break;
+            }
+        }
+
+        if(!ok || u > v) cout << "No\n";
+        else cout << "Yes\n";
+    }
+
+    return 0;
 }

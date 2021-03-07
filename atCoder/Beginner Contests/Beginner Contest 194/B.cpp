@@ -14,8 +14,21 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
-
+ll n, a[100007], b[100007];
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    cin >> n;
+    for(ll i = 0; i < n; ++i) cin >> a[i] >> b[i];
+    ll ans = INF;
+
+    for(ll i = 0; i < n; ++i) {
+        for(ll j = 0; j < n; ++j) {
+            if(i == j) ans = min(ans, b[i] + a[i]);
+            else ans = min(ans, max(b[i], a[j]));
+        }
+    }
+
+    cout << ans << '\n';
+    return 0;
 }

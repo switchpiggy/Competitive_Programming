@@ -14,8 +14,31 @@ typedef long double ld;
 #define INF 0x3f3f3f3f3f3f3f3f
 #define PI 3.14159265358979323846264338
 #define flout cout << fixed << setprecision(12)
+string s, temp;
+stack<ll> st;
 
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
+    cin >> s;
+    temp = s;
+
+    for(ll i = 0; i < sz(s); ++i) {
+        if(s[i] == '0') {
+            if(!st.empty()) {
+                temp[i] = temp[st.top()] = '.';
+                st.pop();
+            }
+        } else {
+            st.push(i);
+        }
+    }
+
+    for(ll i = 0; i < sz(s); ++i) {
+        if(temp[i] == '.') cout << s[i];
+        else cout << '0';
+    }
+
+    cout << '\n';
+    return 0;
 }
