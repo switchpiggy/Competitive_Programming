@@ -48,15 +48,16 @@ template<typename node> struct segtree {
     }
 
     void apply_op(node &x, ll op) {
-        if(op == NONE) return;
+        if(op == node::NONE) return;
+    }
+
+    
+    ll combine_query(ll x, ll y) {
+        
     }
 
     node combine(node x, node y) {
-        return node(combine_op(x, y), node::NONE);
-    }
-
-    ll combine_op(ll x, ll y) {
-        
+        return node(combine_query(x.val, y.val), node::NONE);
     }
 
     void lazy_push(ll x, ll lx, ll rx) {
@@ -79,7 +80,7 @@ template<typename node> struct segtree {
         if(l <= lx && rx <= r) return v[x].val;
 
         lazy_push(x, lx, rx);
-        return combine_op(range_query(l, r, 2 * x + 1, lx, (lx + rx)/2), range_query(l, r, 2 * x + 2, (lx + rx)/2, rx));
+        return combine_query(range_query(l, r, 2 * x + 1, lx, (lx + rx)/2), range_query(l, r, 2 * x + 2, (lx + rx)/2, rx));
     }
 
     ll range_query(ll l, ll r) {
